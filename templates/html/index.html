@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+    <title id='Description'> Grid Grouping</title>
+    <link rel="stylesheet" href="{{ STATIC_URL }}jqwidgets-ver3.1.0/jqwidgets/styles/jqx.base.css" type="text/css" />
+    <script type="text/javascript" src="{{ STATIC_URL }}scripts/jquery-1.10.2.min.js"></script>
+    <script type="text/javascript" src="{{ STATIC_URL }}jqwidgets-ver3.1.0/jqwidgets/jqxcore.js"></script>
+    <script type="text/javascript" src="{{ STATIC_URL }}jqwidgets-ver3.1.0/jqwidgets/jqxbuttons.js"></script>
+    <script type="text/javascript" src="{{ STATIC_URL }}jqwidgets-ver3.1.0/jqwidgets/jqxscrollbar.js"></script>
+    <script type="text/javascript" src="{{ STATIC_URL }}jqwidgets-ver3.1.0/jqwidgets/jqxmenu.js"></script>
+    <script type="text/javascript" src="{{ STATIC_URL }}jqwidgets-ver3.1.0/jqwidgets/jqxgrid.js"></script>
+    <script type="text/javascript" src="{{ STATIC_URL }}jqwidgets-ver3.1.0/jqwidgets/jqxgrid.grouping.js"></script>
+    <script type="text/javascript" src="{{ STATIC_URL }}jqwidgets-ver3.1.0/jqwidgets/jqxgrid.pager.js"></script>
+    <script type="text/javascript" src="{{ STATIC_URL }}jqwidgets-ver3.1.0/jqwidgets/jqxgrid.selection.js"></script>
+     <script type="text/javascript" src="{{ STATIC_URL }}jqwidgets-ver3.1.0/jqwidgets/jqxdata.js"></script> 
+    <script type="text/javascript" src="{{ STATIC_URL }}jqwidgets-ver3.1.0/jqwidgets/jqxdata.export.js"></script> 
+    <script type="text/javascript" src="{{ STATIC_URL }}jqwidgets-ver3.1.0/jqwidgets/jqxgrid.export.js"></script> 
+    <script type="text/javascript" src="{{ STATIC_URL }}jqwidgets-ver3.1.0/jqwidgets/jqxgrid.sort.js"></script> 
+    <script type="text/javascript" src="{{ STATIC_URL }}jqwidgets-ver3.1.0/jqwidgets/generatedata.js"></script>
+    <script type="text/javascript" src="{{ STATIC_URL }}jqwidgets-ver3.1.0/jqwidgets/demos.js"></script>
+   
+    <script type="text/javascript">
+     
+     
+
+     $(document).ready(function(){
+        var data = {{usb_data|safe}};
+        
+        var source =
+        {
+            localdata: data,
+            datatype: "json",
+            datafields:
+            [
+                { name: 'device_name', map: 'fields>device_name', type: 'string' },
+                { name: 'vid_pid', map: 'fields>vid_pid', type: 'date' },
+                { name: 'install', map: 'fields>install', type: 'date' },
+                { name: 'disk_device', map: 'fields>disk_device', type: 'date' },
+                { name: 'volume_device', map: 'fields>volume_device', type: 'date' },
+                { name: 'vid_pid', map: 'fields>vid_pid', type: 'date' },
+                { name: 'install', map: 'fields>install', type: 'date' },
+                { name: 'disk_device', map: 'fields>disk_device', type: 'date' },
+                { name: 'volume_device', map: 'fields>volume_device', type: 'date' },
+                { name: 'usb_type', map: 'fields>usb_type', type: 'string' },
+                { name: 'vid', map: 'fields>vid', type: 'string' },
+                { name: 'pid', map: 'fields>pid', type: 'string' },
+                { name: 'hub', map: 'fields>hub', type: 'number' }
+            
+            ],
+        };
+        var dataAdapter = new $.jqx.dataAdapter(source);
+            // initialize jqxGrid
+            $("#jqxgrid").jqxGrid(
+            {
+                width: 670,
+                source: dataAdapter,                
+                altrows: true,
+                sortable: true,
+                selectionmode: 'multiplecellsextended',
+            columns:
+            [
+                { text: 'Device Name', columntype: 'textbox', datafield: 'device_name', width: 120 },
+                { text: 'VID/PID', columntype: 'textbox', datafield: 'vid_pid', width: 80 },
+                { text: 'Install', columntype: 'textbox', datafield: 'install', width: 50 },
+                { text: 'Disk Device', columntype: 'textbox', datafield: 'disk_device', width: 90 },
+                { text: 'Volume Device', columntype: 'textbox', datafield: 'volume_device', width: 120},
+
+                { text: 'Type', columntype: 'textbox', datafield: 'usb_type', width: 60 },
+                { text: 'VID', columntype: 'textbox', datafield: 'vid', width: 50 },
+                { text: 'PID', columntype: 'textbox', datafield: 'pid', width: 50 },
+                { text: 'Hub', datafield: 'hub', cellsalign: 'right', cellsformat: 'n2' }
+            ]        
+        });
+$("#excelExport").jqxButton({ theme: theme });
+            $("#xmlExport").jqxButton({ theme: theme });
+            $("#csvExport").jqxButton({ theme: theme });
+            $("#tsvExport").jqxButton({ theme: theme });
+            $("#htmlExport").jqxButton({ theme: theme });
+            $("#jsonExport").jqxButton({ theme: theme });
+            $("#excelExport").click(function () {
+                $("#jqxgrid").jqxGrid('exportdata', 'xls', 'jqxGrid');           
+            });
+            $("#xmlExport").click(function () {
+                $("#jqxgrid").jqxGrid('exportdata', 'xml', 'jqxGrid');
+            });
+            $("#csvExport").click(function () {
+                $("#jqxgrid").jqxGrid('exportdata', 'csv', 'jqxGrid');
+            });
+            $("#tsvExport").click(function () {
+                $("#jqxgrid").jqxGrid('exportdata', 'tsv', 'jqxGrid');
+            });
+            $("#htmlExport").click(function () {
+                $("#jqxgrid").jqxGrid('exportdata', 'html', 'jqxGrid');
+            });
+            $("#jsonExport").click(function () {
+                $("#jqxgrid").jqxGrid('exportdata', 'json', 'jqxGrid');
+            });
+        });
+            
+</script>
+</head>
+<body>
+<body class='default'>
+    <div id='jqxWidget' style="font-size: 13px; font-family: Verdana; float:left;margin-left: 130px;">
+        <div id="jqxgrid"></div>
+            <div style='margin-top: 20px;'>
+            <div style='float: left;'>
+                <input type="button" value="Export to Excel" id='excelExport' />
+                <br /><br />
+                <input type="button" value="Export to XML" id='xmlExport' />
+            </div>
+            <div style='margin-left: 10px; float: left;'>
+                <input type="button" value="Export to CSV" id='csvExport' />
+                <br /><br />
+                <input type="button" value="Export to TSV" id='tsvExport' />
+            </div>
+            <div style='margin-left: 10px; float: left;'>
+                <input type="button" value="Export to HTML" id='htmlExport' />
+                <br /><br />
+                <input type="button" value="Export to JSON" id='jsonExport' />
+            </div>
+        </div>
+    </div>
+</body>
+</html>

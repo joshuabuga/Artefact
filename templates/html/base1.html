@@ -1,0 +1,33 @@
+<html>
+		{% block stylesheets %}
+    <meta name="keywords" content="jQuery Menu, Main Menu, Context Menu, Vertical Menu, Popup Menu, Menu, jqxMenu" /> 
+    <meta name="description" content="this is a base template for a persitent menu for all pages"/>
+    <title id='Description'> base template for all other templates,contains a persistent menu</title>
+    <link rel="stylesheet" href="{{ STATIC_URL }}jqwidgets-ver3.1.0/jqwidgets/styles/jqx.base.css" type="text/css" />
+    <script type="text/javascript" src="{{ STATIC_URL }}scripts/jquery-1.10.2.min.js"></script>
+    <script type="text/javascript" src="{{ STATIC_URL }}jqwidgets-ver3.1.0/scripts/demos.js"></script>
+    <script type="text/javascript" src="{{ STATIC_URL }}jqwidgets-ver3.1.0/jqwidgets/jqxcore.js"></script>
+    <script type="text/javascript" src="{{ STATIC_URL }}jqwidgets-ver3.1.0/jqwidgets/jqxmenu.js"></script>
+    <script type="text/javascript" src="{{ STATIC_URL }}jqwidgets-ver3.1.0/jqwidgets/jqxcheckbox.js"></script>
+    {% endblock %}
+
+{%block menu %}
+
+<div id='content'>
+        <script type="text/javascript">
+            $(document).ready(function () {
+                // Create a jqxMenu
+                $("#jqxMenu").jqxMenu({ width: '670', height: '30px'});
+                $("#jqxMenu").css('visibility', 'visible');
+            });
+        </script>
+        <div id='jqxWidget' style='height: 300px;'>
+            <div id='jqxMenu' style='visibility: hidden; margin-left: 5px;'>
+                <ul>
+                    <li><a href="http://127.0.0.1:8000/displayusbdata/"target="_blank">USB</a></li>
+                    
+        </div>
+    </div>
+    {% endblock %}
+
+</html>

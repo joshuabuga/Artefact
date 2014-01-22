@@ -1,0 +1,23 @@
+{% load staticfiles %}
+<html>
+<head>
+<title>{% block title %}{% endblock %}</title>
+</head>
+<body>
+<div id='content'>
+        <script type="text/javascript">
+            $(document).ready(function () {
+                // Create a jqxMenu
+                $("#jqxMenu").jqxMenu({ width: '670', height: '30px'});
+                $("#jqxMenu").css('visibility', 'visible');
+            });
+        </script>
+        <div id='jqxWidget' style='height: 300px;'>
+            <div id='jqxMenu' style='visibility: hidden; margin-left: 5px;'>
+                <ul>
+                    <li><a href="http://127.0.0.1:8000/displayusbdata/"target="_blank">USB</a></li>
+                    
+        </div>
+    </div>
+</body>
+</html>
